@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ProductSeeder extends Seeder
@@ -20,10 +19,16 @@ class ProductSeeder extends Seeder
         $categories = Category::all();
 
         foreach ($categories as $category) {
-            Product::factory()->count(3)->create([
-                'category_id' => $category->id,
-                'user_id' => User::inRandomOrder()->first()->id, // Assign to a random existing user
-            ]);
+            // Retrieve all users within the current category
+            $users = User::inRandomOrder()->limit(3)->get(); // Example: Limit to 3 users per category
+
+            // Create products for each user in the category
+            foreach ($users as $user) {
+                Product::factory()->create([
+                    'category_id' => $category->id,
+                    'user_id' => $user->id,
+                ]);
+            }
         }
     }
 }
