@@ -21,8 +21,7 @@ class User extends Authenticatable
         'email',
         'password',
         'profile_picture',
-        'bio',
-        'is_admin'
+        'bio'
     ];
 
     /**
@@ -33,6 +32,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'is_admin'
     ];
 
     /**
@@ -57,6 +57,16 @@ class User extends Authenticatable
     }
 
     public function reviews() {
+        return $this->hasMany(Review::class, 'reviewee_id');
+    }
+
+    public function givenReviews()
+    {
         return $this->hasMany(Review::class, 'reviewer_id');
+    }
+
+    public function receivedReviews()
+    {
+        return $this->hasMany(Review::class, 'reviewee_id');
     }
 }

@@ -20,7 +20,7 @@ class ProductSeeder extends Seeder
 
         foreach ($categories as $category) {
             // Retrieve all users within the current category
-            $users = User::inRandomOrder()->limit(3)->get(); // Example: Limit to 3 users per category
+            $users = User::inRandomOrder()->limit(4)->get(); // Example: Limit to 3 users per category
 
             // Create products for each user in the category
             foreach ($users as $user) {

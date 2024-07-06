@@ -16,8 +16,19 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
-                        {{ __('Products') }}
+                        {{ __('Browse') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('owned')" :active="request()->routeIs('owned')">
+                        {{ __('My Products') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('lendings.index')" :active="request()->routeIs('lendings.index')">
+                        {{ __('Lendings') }}
+                    </x-nav-link>
+                    @if (Auth::user()->is_admin)
+                    <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
+                        {{ __('Admin Panel') }}
+                    </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -75,8 +86,19 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
-                {{ __('Products') }}
+                {{ __('Browse') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('owned')" :active="request()->routeIs('owned')">
+                {{ __('My Products') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('lendings.index')" :active="request()->routeIs('lendings.index')">
+                {{ __('Lendings') }}
+            </x-responsive-nav-link>
+            @if(Auth::user()->is_admin)
+            <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
+                {{ __('Admin Panel') }}
+            </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->

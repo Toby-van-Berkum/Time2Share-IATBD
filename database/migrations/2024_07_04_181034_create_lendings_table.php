@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('lendings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('product_id')->constrained('products')->cascadeOnDelete();
             $table->foreignId('lender_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('borrower_id')->constrained('users')->cascadeOnDelete();
             $table->dateTimeTz('start_date');

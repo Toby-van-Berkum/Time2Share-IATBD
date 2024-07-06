@@ -25,11 +25,11 @@ class ProductFactory extends Factory
     {
         return [
             'user_id' => User::inRandomOrder()->first()->id, // Assign to a random existing user
-            'name' => $this->faker->sentence(3),
-            'price' => $this->faker->randomFloat(2, 10, 100),
-            'description' => $this->faker->paragraph(2),
+            'name' => fake()->sentence(3),
+            'price' => fake()->randomFloat(2, 10, 100),
+            'description' => fake()->paragraph(2),
             'category_id' => Category::all()->random()->id, // Random category
-            'image' => $this->faker->imageUrl(640, 480), // Optional: Generate a random image URL
+            'image' => fake()->imageUrl(640, 480), // Optional: Generate a random image URL
         ];
     }
 }
