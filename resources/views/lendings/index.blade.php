@@ -12,32 +12,25 @@
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr>
-                                <th scope="col"
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Product
                                 </th>
-                                <th scope="col"
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Lender
                                 </th>
-                                <th scope="col"
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Borrower
                                 </th>
-                                <th scope="col"
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Start Date
                                 </th>
-                                <th scope="col"
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     End Date
                                 </th>
-                                <th scope="col"
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Status
                                 </th>
-                                <th scope="col"
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Actions
                                 </th>
                             </tr>
@@ -65,20 +58,19 @@
                                 </td>
                                 @if(Auth::id() === $lending->lender_id)
                                 <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
-                                    <form action="{{ route('lendings.updateStatus', ['lending' => $lending, 'status' => 'accepted']) }}"
-                                        method="POST" class="inline">
+                                    @if($lending->status === 'pending')
+                                    <form action="{{ route('lendings.updateStatus', ['lending' => $lending, 'status' => 'accepted']) }}" method="POST" class="inline">
                                         @csrf
                                         @method('PATCH')
-                                        <button type="submit"
-                                            class="text-green-600 hover:text-green-900">Accept</button>
+                                        <button type="submit" class="text-green-600 hover:text-green-900">Accept</button>
                                     </form>
-                                    <form action="{{ route('lendings.updateStatus', ['lending' => $lending, 'status' => 'returned']) }}"
-                                        method="POST" class="inline">
+                                    @elseif($lending->status === 'accepted')
+                                    <form action="{{ route('lendings.updateStatus', ['lending' => $lending, 'status' => 'returned']) }}" method="POST" class="inline">
                                         @csrf
                                         @method('PATCH')
-                                        <button type="submit"
-                                            class="text-blue-600 hover:text-blue-900">Mark as Returned</button>
+                                        <button type="submit" class="text-blue-600 hover:text-blue-900">Mark as Returned</button>
                                     </form>
+                                    @endif
                                 </td>
                                 @endif
                             </tr>
