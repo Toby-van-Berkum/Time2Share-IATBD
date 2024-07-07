@@ -14,4 +14,5 @@ This project is an assignment I have made for my study, specifically for the mod
 Since languages and programs continually update, here are the versions of everything I use (so the program can be run at later dates when newer versions are incompatible):
 
 - PHP: 8.3.7
+- Laravel: 11.x
 - XAMPP: v3.3.0
