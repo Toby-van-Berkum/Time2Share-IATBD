@@ -25,7 +25,6 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('products', ProductController::class);
     Route::get('/owned', [ProductController::class, 'owned'])->name('owned');
-    Route::get('/admin/users', [AdminController::class, 'index'])->name('admin.users');
 
     Route::resource('lendings', LendingController::class);
     Route::get('/lendings', [LendingController::class, 'index'])->name('lendings.index');

@@ -24,12 +24,12 @@ class ProductFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::inRandomOrder()->first()->id, // Assign to a random existing user
+            'user_id' => User::inRandomOrder()->first()->id,
             'name' => fake()->sentence(3),
             'price' => fake()->randomFloat(2, 10, 100),
             'description' => fake()->paragraph(2),
-            'category_id' => Category::all()->random()->id, // Random category
-            'image' => fake()->imageUrl(640, 480), // Optional: Generate a random image URL
+            'category_id' => Category::all()->random()->id,
+            'image' => fake()->imageUrl(640, 480),
         ];
     }
 }
